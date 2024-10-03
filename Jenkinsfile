@@ -22,6 +22,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running tests...'
+                    // Explicitly tell Jenkins to look for test files in the src folder
                     bat 'npm test -- --watchAll=false'
                 }
             }
@@ -40,7 +41,7 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying the project...'
-                    // You can add any deployment steps here, such as copying files to a server.
+                    // Add deployment steps here, e.g., copying the build folder to a server.
                 }
             }
         }
