@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     echo 'Installing dependencies...'
-                    sh 'npm install'
+                    bat 'npm install'
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running tests...'
-                    sh 'npm test -- --watchAll=false'
+                    bat 'npm test -- --watchAll=false'
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building the project...'
-                    sh 'npm run build'
+                    bat 'npm run build'
                 }
             }
         }
@@ -39,8 +39,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    echo 'Deploying the application...'
-                    // Add your deployment steps here (e.g., copy files to a server or deploy to AWS)
+                    echo 'Deploying the project...'
+                    // You can add any deployment steps here, such as copying files to a server.
                 }
             }
         }
@@ -51,7 +51,6 @@ pipeline {
             // Archive build artifacts (optional)
             archiveArtifacts artifacts: 'build/**/*', allowEmptyArchive: true
 
-            // Notify if the build fails
             echo 'Pipeline finished.'
         }
     }
